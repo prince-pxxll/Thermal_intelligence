@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Thermal Intelligence — Maharashtra"
+type: software
+version: 0.1.0
+date-released: 2026-09-06
+license: MIT
+repository-code: "https://github.com/<org>/thermal-intelligence-maharashtra"
+abstract: >
+  A geospatial data-science pipeline for detecting, clustering, and
+  risk-scoring thermal anomalies over Maharashtra using NASA FIRMS
+  active-fire data, Sentinel imagery, and OpenStreetMap context layers.
+authors:
+  - family-names: "Contributors"
+    given-names: "Thermal Intelligence Maharashtra"
+keywords:
+  - remote-sensing
+  - thermal-anomaly-detection
+  - FIRMS
+  - geospatial
+  - Maharashtra
+  - risk-scoring
+  - anomaly-detection

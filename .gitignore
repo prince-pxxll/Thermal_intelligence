@@ -1,0 +1,99 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# --- Virtual environments ---
+.venv/
+venv/
+env/
+ENV/
+
+# --- Environment / secrets ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# --- Testing / coverage ---
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.mypy_cache/
+.ruff_cache/
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# --- Data (tracked via DVC / external storage, not git) ---
+data/raw/**
+data/interim/**
+data/processed/**
+data/labels/**
+data/external/**
+!data/raw/**/.gitkeep
+!data/interim/**/.gitkeep
+!data/processed/**/.gitkeep
+!data/labels/**/.gitkeep
+!data/external/**/.gitkeep
+
+# --- Models & large artifacts ---
+models/checkpoints/**
+models/artifacts/**
+!models/checkpoints/.gitkeep
+!models/artifacts/.gitkeep
+*.ckpt
+*.pt
+*.pth
+*.h5
+*.pkl
+*.joblib
+
+# --- Experiment tracking ---
+experiments/runs/**
+!experiments/runs/.gitkeep
+mlruns/
+wandb/
+
+# --- Results (generated, not source) ---
+results/figures/**
+results/tables/**
+results/metrics/**
+results/reports/**
+!results/figures/.gitkeep
+!results/tables/.gitkeep
+!results/metrics/.gitkeep
+!results/reports/.gitkeep
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# --- Geospatial caches ---
+*.gpkg-wal
+*.gpkg-shm
+.geocache/

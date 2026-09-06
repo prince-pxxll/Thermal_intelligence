@@ -1,0 +1,40 @@
+# Region definition for Maharashtra, India.
+# Bounding box is a coarse rectangular envelope for API queries (fast, over-inclusive);
+# the boundary_source polygon should be used for precise spatial filtering/clipping.
+
+region:
+  name: Maharashtra
+  country: India
+  iso_code: IN-MH
+
+  # Coarse bounding box for initial API queries (WGS84 / EPSG:4326)
+  bounding_box:
+    min_lat: 15.6
+    max_lat: 22.1
+    min_lon: 72.6
+    max_lon: 80.9
+
+  # Precise boundary for spatial clipping after ingestion.
+  # Populate with a path to a vetted admin-boundary source (e.g. Survey of India, GADM)
+  # once retrieved into data/raw/other/.
+  boundary_source:
+    type: shapefile     # shapefile | geojson | gpkg
+    path: null           # e.g. data/raw/other/maharashtra_boundary.gpkg
+    admin_level: state
+
+  # Sub-regional breakdown for district-level aggregation/reporting.
+  districts_source:
+    type: null
+    path: null
+    name_field: DISTRICT
+
+  crs:
+    storage: "EPSG:4326"     # lat/lon, for storage & interchange
+    projected: "EPSG:32643"  # UTM zone 43N, for distance/area calculations
+
+  seasonal_context:
+    # Rough seasonal windows relevant to agricultural burning patterns; used as prior
+    # context for classification/anomaly features, not hard filters.
+    rabi_harvest_burning: { start_month: 3, end_month: 4 }
+    kharif_harvest_burning: { start_month: 10, end_month: 11 }
+    monsoon: { start_month: 6, end_month: 9 }

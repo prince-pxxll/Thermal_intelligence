@@ -1,0 +1,58 @@
+# Canonical schema for the model-ready feature table produced by
+# `thermal_intelligence.pipelines.build_features`.
+#
+# Each entry: name, dtype, source module, and whether it's required for the
+# minimum viable feature set (required: false features degrade gracefully if
+# an upstream source, e.g. Sentinel, is unavailable).
+
+schema_version: 1
+
+identifier:
+  - name: event_id
+    dtype: string
+    description: Stable ID for a clustered thermal event (see geospatial.clustering)
+    required: true
+
+thermal_features:
+  source_module: thermal_intelligence.features.thermal
+  fields:
+    - { name: brightness_ti4, dtype: float, required: true }
+    - { name: brightness_ti5, dtype: float, required: false }
+    - { name: frp, dtype: float, description: "Fire Radiative Power (MW)", required: true }
+    - { name: confidence, dtype: category, values: [low, nominal, high], required: true }
+    - { name: daynight, dtype: category, values: [D, N], required: true }
+    - { name: satellite, dtype: category, required: true }
+
+temporal_features:
+  source_module: thermal_intelligence.features.temporal
+  fields:
+    - { name: acq_datetime_ist, dtype: datetime, required: true }
+    - { name: hour_of_day, dtype: int, required: true }
+    - { name: day_of_year, dtype: int, required: true }
+    - { name: season_flag, dtype: category, values: [rabi_burning, kharif_burning, monsoon, other], required: true }
+
+persistence_features:
+  source_module: thermal_intelligence.features.persistence
+  fields:
+    - { name: recurrence_count_30d, dtype: int, required: true }
+    - { name: first_seen_date, dtype: date, required: true }
+    - { name: last_seen_date, dtype: date, required: true }
+    - { name: persistence_score, dtype: float, range: [0, 1], required: true }
+
+context_features:
+  source_module: thermal_intelligence.features.context
+  fields:
+    - { name: dist_to_industrial_m, dtype: float, required: false }
+    - { name: dist_to_cropland_m, dtype: float, required: false }
+    - { name: dist_to_forest_m, dtype: float, required: false }
+    - { name: dist_to_road_m, dtype: float, required: false }
+    - { name: landuse_category, dtype: category, required: false }
+    - { name: district, dtype: category, required: true }
+
+model_outputs:
+  fields:
+    - { name: predicted_event_type, dtype: category, values: [agricultural, industrial, wildfire, other], required: false }
+    - { name: classification_confidence, dtype: float, range: [0, 1], required: false }
+    - { name: anomaly_score, dtype: float, required: false }
+    - { name: risk_score, dtype: float, range: [0, 100], required: false }
+    - { name: risk_explanation, dtype: string, required: false }

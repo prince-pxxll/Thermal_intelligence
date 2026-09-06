@@ -1,0 +1,69 @@
+# Top-level project configuration.
+# Region- and feature-specific settings live in their own files under this directory
+# and are referenced here by path so pipelines have one entry point to read from.
+
+project:
+  name: thermal-intelligence-maharashtra
+  version: 0.1.0
+  random_seed: 42
+  timezone: "Asia/Kolkata"
+
+paths:
+  data_root: data
+  raw_dir: data/raw
+  interim_dir: data/interim
+  processed_dir: data/processed
+  labels_dir: data/labels
+  external_dir: data/external
+  models_root: models
+  results_root: results
+
+region:
+  config_path: config/regions/maharashtra.yaml
+
+features:
+  schema_path: config/features/feature_schema.yaml
+
+ingestion:
+  firms:
+    source_instruments: ["VIIRS_SNPP_NRT", "VIIRS_NOAA20_NRT", "MODIS_NRT"]
+    lookback_days: 30
+    min_confidence: "nominal"     # one of: low | nominal | high
+  osm:
+    layers: ["landuse", "industrial", "roads", "admin_boundaries"]
+  sentinel:
+    enabled: false                # set true once Copernicus credentials are configured
+    max_cloud_cover_pct: 20
+
+clustering:
+  algorithm: st_dbscan
+  spatial_eps_km: 1.0
+  temporal_eps_hours: 48
+  min_samples: 2
+
+persistence:
+  buffer_radius_m: 500
+  rolling_window_days: 30
+  min_recurrences_for_flag: 3
+
+modeling:
+  classification:
+    target: event_type            # agricultural | industrial | wildfire | other
+    algorithm: gradient_boosting
+    test_size: 0.2
+  anomaly_detection:
+    algorithm: isolation_forest
+    contamination: 0.05
+
+risk_scoring:
+  scale_min: 0
+  scale_max: 100
+  weights:
+    persistence: 0.30
+    anomaly: 0.30
+    context_severity: 0.25
+    classification_confidence: 0.15
+
+logging:
+  level: INFO
+  format: "%(asctime)s | %(levelname)s | %(name)s | %(message)s"
