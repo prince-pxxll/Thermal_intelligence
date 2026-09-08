@@ -6,9 +6,10 @@ file and note the change via an ADR in `docs/decisions/`.
 
 ## Data assumptions
 
-- FIRMS detections with `confidence = low` are assumed to contain a materially higher
-  false-positive rate and are down-weighted (not necessarily dropped) in feature
-  construction.
+- FIRMS detections with `confidence = low` are excluded from the current cleaned
+  dataset because the pipeline currently applies a minimum confidence threshold of
+  `nominal`. This is a configurable preprocessing choice and should be revisited
+  if confidence weighting is introduced later.
 - VIIRS detections (375m) are treated as higher spatial fidelity than MODIS (1km) when
   both are available for the same event; MODIS is used primarily for temporal backfill
   before VIIRS coverage was consistent.
@@ -41,6 +42,7 @@ file and note the change via an ADR in `docs/decisions/`.
   engineering and reporting, even though raw FIRMS timestamps are UTC.
 - Coordinate reference system: EPSG:4326 for storage/interchange; projected CRS
   (EPSG:32643, UTM zone 43N) used internally for distance/area calculations.
-- The region boundary used throughout is defined in
-  `config/regions/maharashtra.yaml` and is assumed to be the authoritative scope
-  boundary for all pipeline stages.
+- The Maharashtra state boundary from the official Survey of India administrative
+  boundary dataset is used as the authoritative spatial boundary for filtering.
+  `config/regions/maharashtra.yaml` provides the project region configuration and
+  coarse geographic scope.
