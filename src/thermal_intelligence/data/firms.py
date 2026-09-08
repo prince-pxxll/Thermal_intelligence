@@ -19,19 +19,19 @@ from thermal_intelligence.config.settings import get_settings
 FIRMS_EXPECTED_COLUMNS = [
     "latitude",
     "longitude",
-    "brightness",
+    "bright_ti4",
     "scan",
     "track",
     "acq_date",
     "acq_time",
     "satellite",
+    "instrument",
     "confidence",
     "version",
-    "bright_t31",
+    "bright_ti5",
     "frp",
     "daynight",
 ]
-
 
 @dataclass(frozen=True)
 class FirmsQuery:

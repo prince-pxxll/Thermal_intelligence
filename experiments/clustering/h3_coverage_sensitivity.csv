@@ -1,0 +1,7 @@
+config,spatial_eps_km,temporal_eps_hours,min_samples,total_observations,multi_observation_clusters,observations_represented,observation_coverage_fraction,singleton_or_noise_observations
+C1,0.25,24,2,297,15,36,0.12121212121212122,261
+C2,0.5,24,2,297,39,114,0.3838383838383838,183
+C3,0.5,48,3,297,18,109,0.367003367003367,188
+C4,0.75,48,3,297,19,131,0.44107744107744107,166
+C5,1.0,48,2,297,35,172,0.5791245791245792,125
+C6,1.0,72,3,297,14,144,0.48484848484848486,153

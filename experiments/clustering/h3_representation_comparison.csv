@@ -1,0 +1,3 @@
+representation,n_rows,n_spatial_units,n_temporal_units,mean_frp,frp_std,mean_active_days_per_unit
+individual_observation,297,297,30,3.065185185185185,2.7846443164197776,1.0
+source_level_event,35,35,70,2.315170041349873,1.4989752153887268,2.0

@@ -1,0 +1,2 @@
+hypothesis,individual_observations,source_level_events,baseline_source_coverage,baseline_observations_represented,baseline_observations_total,recurring_source_fraction,persistent_source_fraction,mean_source_radius_km,interpretation
+H3,297,35,0.5791245791245792,172,297,0.5714285714285714,0.2,0.3716710740047909,"Partial support; source-level representation reveals recurrence and persistence, but clustering coverage is parameter-sensitive."

@@ -1,0 +1,3 @@
+representation,analytical_units,unique_calendar_dates,mean_frp,frp_std,mean_active_days_per_unit,mean_spatial_radius_km,observations_represented,observation_representation_fraction,recurring_unit_fraction,persistent_unit_fraction
+individual_observation,297,30.0,3.065185185185185,2.7846443164197776,1.0,,297,1.0,,
+source_level_event,35,,2.315170041349873,1.4989752153887268,2.0,0.3716710740047909,172,0.5791245791245792,0.5714285714285714,0.2
